@@ -6,7 +6,7 @@ import {
   INTERACTION_PART_REQUEST,
   INTERACTION_PART_RESPONSE,
 } from '../ffi/types';
-import logger, { logCrashAndThrow, logErrorAndThrow } from '../logger';
+import { logCrashAndThrow, logErrorAndThrow } from '../logger';
 import { wrapAllWithCheck, wrapWithCheck } from './checkErrors';
 
 import {
@@ -99,10 +99,7 @@ export const makeConsumerPact = (
       )(port);
     },
     writePactFile: (port: number, dir: string, merge = true) => {
-      if (!merge) {
-        logger.warn("Write pact file's merge is always true at the moment");
-      }
-      const result = lib.pactffi_write_pact_file(port, dir /*!merge*/);
+      const result = lib.pactffi_write_pact_file(port, dir, !merge);
       switch (result) {
         case FfiWritePactResponse.SUCCESS:
           return;

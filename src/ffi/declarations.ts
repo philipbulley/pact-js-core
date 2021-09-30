@@ -174,7 +174,7 @@ export type FfiDeclarations = {
    *
    * int32_t pactffi_write_pact_file(int32_t mock_server_port, const char *directory, bool overwrite);
    */
-  pactffi_write_pact_file: ['int32', ['int32', 'string']];
+  pactffi_write_pact_file: ['int32', ['int32', 'string', 'bool']];
   /**
    * External interface to cleanup a mock server. This function will try terminate the mock server
    * with the given port number and cleanup any memory allocated for it. Returns true, unless a
@@ -245,7 +245,7 @@ export const declarations: FfiDeclarations = {
     [InteractionHandle, 'int32', 'string', 'string', 'string'],
   ],
   pactffi_response_status: ['bool', [InteractionHandle, 'int32']],
-  pactffi_write_pact_file: ['int32', ['int32', 'string']],
+  pactffi_write_pact_file: ['int32', ['int32', 'string', 'bool']],
   pactffi_cleanup_mock_server: ['bool', ['int32']],
   pactffi_mock_server_mismatches: ['string', ['int32']],
   pactffi_get_tls_ca_certificate: ['string', []],
