@@ -1,5 +1,5 @@
 // https://github.com/node-ffi/node-ffi/wiki/Node-FFI-Tutorial
-import ffi = require('ffi-napi');
+import ffi = require('ffi-cross');
 import path = require('path');
 import { FfiBinding } from './types';
 import logger from '../../logger';

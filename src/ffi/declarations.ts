@@ -1,27 +1,27 @@
-import ref = require('ref-napi');
-import refStructDi = require('ref-struct-di');
+import ffi = require('ffi-cross');
+
 import { FfiEnum } from './internals/types';
 import { FfiInteractionPart, FfiSpecificationVersion } from './types';
 
-const struct = refStructDi(ref);
+const { ref, types, StructType } = ffi;
 
-const unknown = ref.types.void; // unknown type
+const unknown = types.void; // unknown type
 
 const pact = unknown;
 const interaction = unknown;
 const InteractionPtr = ref.refType(interaction);
 const PactPtr = ref.refType(pact);
-const PactHandle = struct({
+const PactHandle = StructType({
   pact: PactPtr,
 });
-const InteractionHandle = struct({
+const InteractionHandle = StructType({
   pact: PactPtr,
   interaction: InteractionPtr,
 });
 
-const StringResultStruct = struct({
-  tag: ref.types.int,
-  ok: ref.types.CString,
+const StringResultStruct = StructType({
+  tag: types.int,
+  ok: types.CString,
 });
 
 // We have to declare this twice because typescript can't figure it out
