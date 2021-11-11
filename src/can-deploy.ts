@@ -131,7 +131,10 @@ export class CanDeploy {
                   )}`
                 );
               }
-              const jsonPart = output.slice(startIndex).join('\n');
+              const jsonPart = output
+                .slice(startIndex)
+                .join('\n')
+                .replace(/\n/g, '');
 
               const parsed = JSON.parse(jsonPart) as CanDeployResponse;
               if (code === 0 && parsed.summary.deployable) {
